@@ -4,7 +4,7 @@ let user = 'nathanvititoe';
 
 async function JSONdata() {
   try {
-    const response = await fetch(`${url}/${route}/${user}`);
+    const response = await fetch(`${url}/cards/nathanvititoe`);
     const data = await response.json();
     console.log(data);
   } catch (err) {
