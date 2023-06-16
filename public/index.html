@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Business Card Generator</title>
     <script defer src="app.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="page-Container">
-        <div class="navbar">
-            <div id="addCard">
-            </div>
-            <div id="myCards">
-            </div>
-            <div class="search">
-                <input id="input-field" type="text">
-                <input id="submit-btn" type="submit">
-            </div>
-            <div class="login">
-                <div id="login-btn">
-                </div>
-                <div id="signUp-btn">
-                </div>
-            </div>
+      <div class="navbar">
+        <div id="addCard">
+          <button id="addCard-btn">+</button>
         </div>
+        <div id="myCards">
+          <button id="myCards-btn">My Cards</button>
+        </div>
+        <div class="search">
+          <input id="input-field" type="text" />
+          <input id="submit-btn" value="search" type="submit" />
+        </div>
+        <div class="login">
+          <div id="login-btn">
+            <a href=""><p>login</p></a>
+          </div>
+          <div id="signUp-btn">
+            <a href=""><p>sign up</p></a>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
