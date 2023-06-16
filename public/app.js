@@ -1,9 +1,10 @@
 const url = 'https://mvpwebservice.onrender.com';
-const route = 'nathanvititoe';
+let route = 'cards';
+let user = 'nathanvititoe';
 
 async function JSONdata() {
   try {
-    const response = await fetch(`${url}/${route}`);
+    const response = await fetch(`${url}/${route}/${user}`);
     const data = await response.json();
     console.log(data);
   } catch (err) {
