@@ -43,8 +43,7 @@ const createLoginModal = () => {
       try {
         const response = await fetch(`${url}/users/${username}`);
         const JSONdata = await response.json();
-        console.log(JSONdata);
-        if(username === data.username && password === data.passwords) {
+        if(username === JSONdata.username && password === JSONdata.passwords) {
           console.log('Login successful')
         } else {
           document.querySelector('#message').textContent = 'Incorrect login information'
