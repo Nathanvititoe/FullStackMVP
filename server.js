@@ -15,8 +15,8 @@ const client = new Pool ({
 
 // const PORT = 3001;
 const PORT = process.env.PORT;
-app.use(express.json());
 app.use(express.static("public"));
+app.use(express.json());
 
 //ALL BUSINESS CARD REST ROUTES
 
