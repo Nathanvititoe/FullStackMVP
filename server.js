@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(express.static("public"));
 
-//ALL GENERIC REST ROUTES
+//ALL BUSINESS CARD REST ROUTES
 
 //create GET ALL route (shows all users cards)
 app.get("/cards", async (req, res) => {
