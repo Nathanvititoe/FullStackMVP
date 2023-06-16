@@ -9,6 +9,7 @@
   </head>
   <body>
     <div class="page-Container">
+      <!--NAVBAR CONTAINER-->
       <div class="navbar">
         <div id="addCard">
           <button id="addCard-btn">+</button>
@@ -30,6 +31,52 @@
           </div>
         </div>
       </div>
+      <!--END OF NAVBAR CONTAINER-->
+      <!--FORM CONTAINER-->
+      <div class="form-container">
+        <h2>Enter your information!</h2>
+        <div class="input-container">
+          <form action="/cards" method="post" class="form-fields">
+            <div class="form-box">
+              <div class="input-labels">
+                <label for="name-input">Name</label>
+                <label for="name-input">Occupation</label>
+                <label for="name-input">Phone Number</label>
+                <label for="name-input">E-mail</label>
+              </div>
+              <div class="input-fields">
+                <input
+                  type="text"
+                  name="Name"
+                  placeholder="John Doe"
+                  id="name-input"
+                />
+                <input
+                  type="text"
+                  name="phone_number"
+                  placeholder="123 456 7890"
+                />
+                <input
+                  type="text"
+                  name="occupation"
+                  placeholder="Nurse Practitioner"
+                />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="johndoe@gmail.com"
+                />
+              </div>
+            </div>
+
+            <div class="imgBox">
+              <h4>Upload an Image!</h4>
+              <input type="file" id="imgUpload" name="image" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--END OF FORM CONTAINER-->
     </div>
   </body>
 </html>
