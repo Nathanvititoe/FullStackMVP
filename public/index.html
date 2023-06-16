@@ -11,23 +11,25 @@
     <div class="page-Container">
       <!--NAVBAR CONTAINER-->
       <div class="navbar">
-        <div id="addCard">
-          <button id="addCard-btn">+</button>
+        <div class="card-nav">
+            <div id="addCard">
+                <button id="addCard-btn">+</button>
+            </div>
+            <div id="myCards">
+                <button id="myCards-btn">My Cards</button>
+            </div>
         </div>
-        <div id="myCards">
-          <button id="myCards-btn">My Cards</button>
-        </div>
-        <h1>Digital Business Card Maker</h1>
+            <h1>Digital Business Card Maker</h1>
         <div class="search">
           <input id="input-field" type="text" />
           <input id="submit-btn" value="search" type="submit" />
         </div>
         <div class="login">
           <div id="login-btn">
-            <a href=""><p>login</p></a>
+            <p>login</p>
           </div>
-          <div id="signUp-btn">
-            <a href=""><p>sign up</p></a>
+          <div id="signup-btn">
+            <p>sign up</p>
           </div>
         </div>
       </div>
@@ -100,6 +102,41 @@
         </div>
       </div>
       <!--END OF EXAMPLE CARD-->
+      <!--Login modals-->
+      <div id="login-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-login">&times;</span>
+          <h2>Login</h2>
+          <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username-login" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password-login" name="passwords" required>
+            <input type="submit"></input>
+          </form>
+        </div>
+      </div>
+      <!--END OF LOGIN MODALS-->
+      <!--SignUp modals-->
+      <div id="signup-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-signup">&times;</span>
+          <h2>Sign Up</h2>
+          <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username-signup" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password-signup" name="passwords" required>
+            <input type="submit"></input>
+          </form>
+        </div>
+      </div>
+      <!--END OF SIGNUP MODALS-->
+      <!--FOOTER -->
+      <div class="footer-container">
+        <p>2023 Nathan Vititoe</p>
+      </div>
+      <!--END OF FOOTER-->
     </div>
   </body>
 </html>
