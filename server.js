@@ -13,7 +13,7 @@ const client = new Pool ({
 //   database: "mvp",
 // });
 
-// const PORT = 3001;
+// const PORT = 5500;
 const PORT = process.env.PORT;
 app.use(express.static("public"));
 app.use(express.json());

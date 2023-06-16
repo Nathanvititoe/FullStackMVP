@@ -42,9 +42,9 @@
             <div class="form-box">
               <div class="input-labels">
                 <label for="name-input">Name</label>
-                <label for="name-input">Occupation</label>
-                <label for="name-input">Phone Number</label>
-                <label for="name-input">E-mail</label>
+                <label for="phone-input">Occupation</label>
+                <label for="occupation-input">Phone Number</label>
+                <label for="email-input">E-mail</label>
               </div>
               <div class="input-fields">
                 <input
@@ -57,16 +57,19 @@
                   type="text"
                   name="phone_number"
                   placeholder="123 456 7890"
+                  id="phone-input"
                 />
                 <input
                   type="text"
                   name="occupation"
                   placeholder="Nurse Practitioner"
+                  id="occupation-input"
                 />
                 <input
                   type="text"
                   name="email"
                   placeholder="johndoe@gmail.com"
+                  id="email-input"
                 />
               </div>
             </div>
@@ -76,6 +79,9 @@
               <input type="file" id="imgUpload" name="image" />
             </div>
           </form>
+        </div>
+        <div id="form-submit-btn">
+            <input type="submit">
         </div>
       </div>
       <!--END OF FORM CONTAINER-->
@@ -108,12 +114,13 @@
           <span class="close-login">&times;</span>
           <h2>Login</h2>
           <form id="loginForm">
-            <label for="username">Username:</label>
+            <label for="username-login">Username:</label>
             <input type="text" id="username-login" name="username" required>
-            <label for="password">Password:</label>
+            <label for="password-login">Password:</label>
             <input type="password" id="password-login" name="passwords" required>
             <input type="submit"></input>
           </form>
+          <div id="message"></div>
         </div>
       </div>
       <!--END OF LOGIN MODALS-->
@@ -123,9 +130,9 @@
           <span class="close-signup">&times;</span>
           <h2>Sign Up</h2>
           <form id="signupForm">
-            <label for="username">Username:</label>
+            <label for="username-signup">Username:</label>
             <input type="text" id="username-signup" name="username" required>
-            <label for="password">Password:</label>
+            <label for="password-signup">Password:</label>
             <input type="password" id="password-signup" name="passwords" required>
             <input type="submit"></input>
           </form>

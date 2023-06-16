@@ -1,4 +1,5 @@
 const url = 'https://mvpwebservice.onrender.com';
+// const url = 'http://127.0.0.1:5500/public/'
 let route = 'cards';
 let user = 'nathanvititoe';
 
@@ -6,6 +7,7 @@ let user = 'nathanvititoe';
 async function getHomePage() {
   try {
     const response = await fetch(`${url}/${route}/${user}`);
+    
     const data = await response.json();
     console.log(data);
   } catch (err) {
@@ -37,18 +39,21 @@ const createLoginModal = () => {
     const password = document.getElementById("password-login").value;
     
     //  send the login data to the server
-    async function sendLoginData() {
+    async function readLoginData() {
       try {
-        route = 'users';
-        user = username;
-        const response = await fetch(`${url}/${route}/${user}`);
-        const data = await response.json();
-        console.log(data);
+        const response = await fetch(`${url}/users/${username}`);
+        const JSONdata = await response.json();
+        console.log(JSONdata);
+        if(username === data.username && password === data.passwords) {
+          console.log('Login successful')
+        } else {
+          document.querySelector('#message').textContent = 'Incorrect login information'
+        }
       } catch (err) {
         console.log(err.message);
       }
     }
-    JSONdata();
+    readLoginData();
     // You can add your own logic here
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
