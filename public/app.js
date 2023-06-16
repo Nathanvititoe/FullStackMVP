@@ -41,7 +41,7 @@ const createLoginModal = () => {
 };
 
 //  send the login data to the server
-async function readLoginData() {
+const readLoginData = async () => {
   const username = document.getElementById("username-login").value;
   const password = document.getElementById("password-login").value;
   try {
@@ -78,16 +78,34 @@ const createSignUpModal = () => {
   const signupForm = document.getElementById("signupForm");
   signupForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const username = document.getElementById("username-signup").value;
-    const password = document.getElementById("password-signup").value;
-
-    //  send the login data to the server
-    // You can add your own logic here
-    console.log(`Username: ${username}`);
-    console.log(`Password: ${password}`);
-
+    readSignUpdata();
+    
     // Close the modal after login submission
     modal.style.display = "none";
   });
 };
 createSignUpModal();
+
+const readSignUpdata = async () => {
+  const username = document.getElementById("username-signup").value;
+  const password = document.getElementById("password-signup").value;
+  if(password.length < 5) {
+    console.log('password must be atleast 5 character');
+    return;
+  }
+  try {
+    const data = {
+      username : username,
+      passwords : password
+    }
+    const response = await fetch(`${url}/users/`, {
+      method: 'POST',
+      headers : {
+        'Content-Type': 'Application/json'
+      },
+      body : JSON.stringify(data)
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
