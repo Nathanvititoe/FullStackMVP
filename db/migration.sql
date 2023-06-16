@@ -1,18 +1,18 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS business_cards;
 
 CREATE TABLE users (
-user_id SERIAL PRIMARY KEY,
-username VARCHAR
+username VARCHAR PRIMARY KEY,
+passwords VARCHAR
 );
 
 CREATE TABLE business_cards (
-    card_id SERIAL PRIMARY KEY,
+    card_id SERIAL ,
     name VARCHAR,
     phone_number INTEGER,
     email TEXT,
     occupation TEXT,
     image TEXT,
-    user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    username VARCHAR,
+    FOREIGN KEY (username) REFERENCES users(username)
 );
