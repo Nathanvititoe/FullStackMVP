@@ -8,7 +8,6 @@ let currentUser = {
   phone : '1234567890',
   email : 'johndoe420@gmail.com'
 };
-
 // //fetch request for initial data
 // async function getHomePage() {
 //   try {
@@ -171,10 +170,8 @@ const workingSearchBar = () => {
     e.preventDefault();
       const searchBar = document.querySelector("#searchBar-field").value;
       let user = searchBar;
-      console.log(user);
       const response = await fetch(`${url}/cards/${user}`);
       const data = await response.json();
-      console.log(data);
     });
   } catch (err) {
     console.log(err.message);
@@ -230,7 +227,6 @@ const myCardsBtn = () => {
       }
       const response = await fetch(`${url}/cards/${user}`);
       const data = await response.json();
-      console.log(data);
       //for of loop 
       for(let item in data[0]) {
         const ul = document.querySelector('.myCards');
@@ -270,7 +266,7 @@ const setDefaults = () => {
   emailInput.value = '';
   emailCard.textContent = 'johndoe@gmail.com';
  }
-
+setDefaults();
  //add new card btn (Resets values to default)
  const newCardBtn = () => {
   //add event listener to btn

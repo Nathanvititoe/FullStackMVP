@@ -6,6 +6,9 @@
     <title>Business Card Generator</title>
     <script defer src="app.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Quicksand&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="page-Container">
@@ -19,14 +22,14 @@
                 <button id="myCards-btn">My Cards</button>
             </div>
         </div>
-            <h1>Digital Business Card Maker</h1>
+            <a href="/index.html"><h1>Digital Business Card Maker</h1></a>
             <form action="/cards" method="GET" id="search-form">
             <div class="search">
             <input id="searchBar-field" type="text" />
             <input type="submit" value="Search" id="search-btn">
           </div>
         </form>
-        <div class="login">
+        <div class="account-btns">
           <div id="login-btn">
             <p>login</p>
           </div>
@@ -44,8 +47,8 @@
             <div class="form-box">
               <div class="input-labels">
                 <label for="name-input">Name</label>
-                <label for="phone-input">Occupation</label>
-                <label for="occupation-input">Phone Number</label>
+                <label for="occupation">Occupation</label>
+                <label for="phone-input">Phone Number</label>
                 <label for="email-input">E-mail</label>
               </div>
               <div class="input-fields">
@@ -113,13 +116,15 @@
         <div class="modal-content">
           <span class="close-login">&times;</span>
           <h2>Login</h2>
-          <form id="loginForm">
-            <label for="username-login">Username:</label>
-            <input type="text" id="username-login" name="username" required>
-            <label for="password-login">Password:</label>
-            <input type="password" id="password-login" name="passwords" required>
-            <input type="submit"></input>
-          </form>
+          <div class="user-pass">
+            <form id="loginForm">
+              <label for="username-login">Username:</label>
+              <input type="text" id="username-login" name="username" required>
+              <label for="password-login">Password:</label>
+              <input type="password" id="password-login" name="passwords" required>
+              <input type="submit" value="Login"></input>
+            </form>
+          </div>
           <div id="message"></div>
         </div>
       </div>

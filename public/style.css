@@ -1,36 +1,103 @@
+/* contains whole page */
+body {
+    background-color: rgb(193, 234, 243);
+    font-family: 'Oswald', sans-serif;
+}
 .page-container {
-    display: flex;
+  display: flex;
+  overflow-x: auto;
+  margin: 0 auto;
 }
 
+/* removes anchor defaults */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*  navbar container styling */
 .navbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    box-shadow: 4px 4px 4px rgb(49, 47, 47);
-    /* position: fixed; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  padding: 10px;
+  box-shadow: 4px 4px 4px rgb(49, 47, 47);
+  /* background-color: rgb(101, 97, 97); */
+  background-color: rgb(112, 190, 231);
 }
 
+/* page title styling */
+.navbar h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+/* includes add card and my card button */
+.card-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 25%;
+}
+
+/* styles addCard btn specifically  */
+#addCard-btn {
+  padding: 5px;
+  font-size: 35px;
+  background-color: #bab4b4;
+  width: 60%;
+  color: #010101;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px;
+  transition: background-color 0.3s ease;
+}
+
+/* sets proper width for addCard container  */
+#addCard {
+  width: 25%;
+}
+
+/* my card btn styling */
+#myCards-btn {
+    padding: 5px;
+    font-size: 15px;
+    background-color: #bab4b4;
+    color: #010101;
+    height: 35%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 2px 2px;
+    transition: background-color 0.3s ease;
+  }
+
+/* container for entire form */
 .form-container {
-    border: 2px solid black;
-    position: relative;
-    border-radius: 15px;
-    width: 40%;
-    padding: 1%;
-    margin-top: 100px;
-    margin-right: 100px;
+  border: 2px solid black;
+  position: relative;
+  border-radius: 15px;
+  width: 40%;
+  padding: 1%;
+  margin-top: 100px;
+  margin-right: 100px;
 }
 
+/* container for entire example business card  */
 .example-container {
-    display: flex;
-    border: 2px solid black;
-    border-radius: 7px;
-    width: 40%;
+  display: flex;
+  border: 2px solid black;
+  border-radius: 7px;
+  width: 40%;
 }
+
+/* all form input boxes */
 .form-fields {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 /* .form-fields input {
@@ -38,62 +105,59 @@
 } */
 
 .imgBox {
-    border: 3px solid black;
-    border-radius: 8px;
-    margin-top: 50px;
-    padding: 3%;
-    
+  border: 3px solid black;
+  border-radius: 8px;
+  margin-top: 50px;
+  padding: 3%;
 }
 
 .input-labels {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-fields {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-fields label {
-    margin: 5% 1%;
+  margin: 5% 1%;
 }
 
 .input-fields input {
-    margin: 5% 1%;
+  margin: 5% 1%;
 }
 
 .form-box {
-    display: flex;
+  display: flex;
 }
 
-
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 300px;
-  }
-  
-  .close {
-    float: right;
-    cursor: pointer;
-  }
-  
-  .close:hover {
-    color: red;
-  }
-  
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 300px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
