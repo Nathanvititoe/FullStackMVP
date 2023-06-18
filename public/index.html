@@ -58,7 +58,7 @@
                 <input
                   type="text"
                   name="phone_number"
-                  placeholder="123 456 7890"
+                  placeholder="1234567890"
                   id="phone-input"
                 />
                 <input
@@ -81,7 +81,7 @@
               <input type="file" id="imgUpload" name="image" />
             </div>
             <div id="submit-btn-container">
-                <input id="form-submit-btn" type="submit">
+                <input id="form-submit-btn" type="submit" value="Save">
             </div>
           </form>
         </div>
@@ -91,20 +91,18 @@
       <div class="example-container">
         <div class="top-half">
             <div class="img-container">
-                <img src="/images/doggo.jpeg" alt="doggo">
+                <!-- <img src="/images/doggo.jpeg" alt="doggo"> -->
             </div>
-            <div class="name-title">
+            <div class="title-header">
                 <!--to be changed-->
-                <h2>Nathan Vititoe</h2>
-                <h5>Full Stack Software Developer</h5>
+                <h2 id="name-title"></h2>
+                <h5 id="job-title"></h5>
             </div>
             <div class="bottom-half">
                 <div class="contact-info">
                     <!--to be changed-->
-                    <p>123 456 7890</p>
-                    <p id="email">
-                        nathanvititoe@gmail.com
-                    </p>
+                    <p id="phone-title"></p>
+                    <p id="email-title"></p>
                 </div>
             </div>
         </div>
@@ -141,9 +139,14 @@
         </div>
       </div>
       <!--END OF SIGNUP MODALS-->
+      <!--MY CARDS LIST-->
+      <ul class="myCards">
+      </ul>
+      <!--END OF MYCARDS LIST-->
       <!--FOOTER -->
       <div class="footer-container">
         <p>2023 Nathan Vititoe</p>
+        <p>Fueled by Coke Zero</p>
       </div>
       <!--END OF FOOTER-->
     </div>

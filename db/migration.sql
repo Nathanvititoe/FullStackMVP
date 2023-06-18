@@ -9,7 +9,7 @@ passwords VARCHAR
 CREATE TABLE business_cards (
     card_id SERIAL ,
     name VARCHAR,
-    phone_number INTEGER,
+    phone_number VARCHAR,
     email TEXT,
     occupation TEXT,
     image TEXT,

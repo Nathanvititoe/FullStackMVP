@@ -3,18 +3,18 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const { Pool } = require("pg");
-const client = new Pool ({
-    connectionString:process.env.DATABASE_URL
-});
-// const client = new Pool({
-//   host: "localhost",
-//   user: "postgres",
-//   port: 5432,
-//   database: "mvp",
+// const client = new Pool ({
+//     connectionString:process.env.DATABASE_URL
 // });
+const client = new Pool({
+  host: "localhost",
+  user: "postgres",
+  port: 5432,
+  database: "mvp",
+});
 
-// const PORT = 3001;
-const PORT = process.env.PORT;
+const PORT = 3001;
+// const PORT = process.env.PORT;
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -25,9 +25,9 @@ res.send('nathan account').status(200);
 });
 //ALL BUSINESS CARD REST ROUTES
 
-//create GET ALL route (shows all users cards)
+//create GET ALL route (shows all cards)
 app.get("/cards", async (req, res) => {
-  try {
+  try { 
     const results = await client.query("SELECT * FROM business_cards");
     if (!results.rows) {
       console.log("couldn't reach database");
@@ -74,7 +74,6 @@ app.post("/cards", async (req, res) => {
       "INSERT INTO business_cards (name, phone_number, email, occupation, username)VALUES($1,$2,$3,$4,$5)",
       [name, phone_number, email, occupation, username]
     );
-    console.log('post route hit');
     res.send(results.rows[0]).status(201);
   } catch (err) {
     console.log(err.message);
