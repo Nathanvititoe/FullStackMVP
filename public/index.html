@@ -20,10 +20,12 @@
             </div>
         </div>
             <h1>Digital Business Card Maker</h1>
-        <div class="search">
-          <input id="input-field" type="text" />
-          <input id="submit-btn" value="search" type="submit" />
-        </div>
+            <form action="/cards" method="GET" id="search-form">
+            <div class="search">
+            <input id="searchBar-field" type="text" />
+            <input type="submit" value="Search" id="search-btn">
+          </div>
+        </form>
         <div class="login">
           <div id="login-btn">
             <p>login</p>
@@ -38,7 +40,7 @@
       <div class="form-container">
         <h2>Enter your information!</h2>
         <div class="input-container">
-          <form action="/cards" method="post" class="form-fields">
+          <form action="/cards" method="post" class="form-fields" id="form-form">
             <div class="form-box">
               <div class="input-labels">
                 <label for="name-input">Name</label>
@@ -78,10 +80,10 @@
               <h4>Upload an Image!</h4>
               <input type="file" id="imgUpload" name="image" />
             </div>
+            <div id="submit-btn-container">
+                <input id="form-submit-btn" type="submit">
+            </div>
           </form>
-        </div>
-        <div id="form-submit-btn">
-            <input type="submit">
         </div>
       </div>
       <!--END OF FORM CONTAINER-->

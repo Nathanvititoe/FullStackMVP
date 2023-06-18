@@ -74,6 +74,7 @@ app.post("/cards", async (req, res) => {
       "INSERT INTO business_cards (name, phone_number, email, occupation, username)VALUES($1,$2,$3,$4,$5)",
       [name, phone_number, email, occupation, username]
     );
+    console.log('post route hit');
     res.send(results.rows[0]).status(201);
   } catch (err) {
     console.log(err.message);
