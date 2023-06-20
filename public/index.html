@@ -5,28 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Business Card Generator</title>
     <script defer src="app.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="page-Container">
       <!--NAVBAR CONTAINER-->
-      <div class="navbar">
+      <nav class="navbar">
         <div class="card-nav">
-            <div id="addCard">
-                <button id="addCard-btn">+</button>
-            </div>
-            <div id="myCards">
-                <button id="myCards-btn">My Cards</button>
-            </div>
+          <div id="addCard">
+            <button id="addCard-btn">+</button>
+          </div>
+          <div id="myCards">
+            <button id="myCards-btn">My Cards</button>
+          </div>
         </div>
-            <a href="/index.html"><h1>Digital Business Card Maker</h1></a>
-            <form action="/cards" method="GET" id="search-form">
-            <div class="search">
+        <div id="spacer">
+        </div>
+        <a href="/index.html"><h1>Digital Business Card Maker</h1></a>
+        <form action="/cards" method="GET" id="search-form">
+          <div class="search">
             <input id="searchBar-field" type="text" />
-            <input type="submit" value="Search" id="search-btn">
+            <input type="submit" value="Search" id="search-btn" />
           </div>
         </form>
         <div class="account-btns">
@@ -37,77 +42,109 @@
             <p>sign up</p>
           </div>
         </div>
-      </div>
+      </nav>
       <!--END OF NAVBAR CONTAINER-->
       <!--FORM CONTAINER-->
-      <div class="form-container">
-        <h2>Enter your information!</h2>
-        <div class="input-container">
-          <form action="/cards" method="post" class="form-fields" id="form-form">
+      <div class="form-example-container">
+        <div class="form-container">
+          <h2 id="form-h2">Enter your information!</h2>
+          <form
+            action="/cards"
+            method="post"
+            class="form-fields"
+            id="form-form"
+          >
             <div class="form-box">
-              <div class="input-labels">
-                <label for="name-input">Name</label>
-                <label for="occupation">Occupation</label>
-                <label for="phone-input">Phone Number</label>
-                <label for="email-input">E-mail</label>
-              </div>
-              <div class="input-fields">
+              <div class="name">
+                <label
+                  for="name-input"
+                  class="form-item"
+                  class="form-label"
+                  id="name-label"
+                  >Name</label
+                >
                 <input
                   type="text"
+                  class="form-item"
                   name="Name"
                   placeholder="John Doe"
                   id="name-input"
                 />
+              </div>
+              <div class="phone">
+                <label
+                  for="phone-input"
+                  class="form-item"
+                  class="form-label"
+                  id="phone-label"
+                  >Phone Number</label
+                >
                 <input
                   type="text"
+                  class="form-item"
                   name="phone_number"
                   placeholder="1234567890"
                   id="phone-input"
                 />
+              </div>
+              <div class="job">
+                <label
+                  for="occupation"
+                  class="form-item"
+                  class="form-label"
+                  id="job-label"
+                  >Occupation</label
+                >
                 <input
+                  class="form-item"
                   type="text"
                   name="occupation"
-                  placeholder="Nurse Practitioner"
+                  placeholder="Farmer"
                   id="occupation-input"
                 />
+              </div>
+              <div class="email">
+                <label
+                  for="email-input"
+                  class="form-item"
+                  class="form-label"
+                  id="email-label"
+                  >E-mail</label
+                >
                 <input
                   type="text"
+                  class="form-item"
                   name="email"
                   placeholder="johndoe@gmail.com"
                   id="email-input"
                 />
               </div>
             </div>
-
-            <div class="imgBox">
-              <h4>Upload an Image!</h4>
-              <input type="file" id="imgUpload" name="image" />
-            </div>
             <div id="submit-btn-container">
-                <input id="form-submit-btn" type="submit" value="Save">
+              <input id="form-submit-btn" type="submit" value="Save" />
             </div>
           </form>
         </div>
-      </div>
-      <!--END OF FORM CONTAINER-->
-      <!--EXAMPLE CARD-->
-      <div class="example-container">
-        <div class="top-half">
+        <!--END OF FORM CONTAINER-->
+        <!--EXAMPLE CARD-->
+        <div class="example-container">
+          <div class="top-half">
             <div class="img-container">
-                <!-- <img src="/images/doggo.jpeg" alt="doggo"> -->
+              <!-- <img src="/images/doggo.jpeg" alt="doggo"> -->
             </div>
             <div class="title-header">
-                <!--to be changed-->
-                <h2 id="name-title"></h2>
-                <h5 id="job-title"></h5>
+              <!--to be changed-->
+              <h2 id="name-title"></h2>
+              <h5 id="job-title"></h5>
             </div>
             <div class="bottom-half">
-                <div class="contact-info">
-                    <!--to be changed-->
-                    <p id="phone-title"></p>
-                    <p id="email-title"></p>
-                </div>
+              <div class="contact-info">
+                <!--to be changed-->
+                <p id="phone-title"></p>
+                <p id="email-title"></p>
+              </div>
             </div>
+          </div>
         </div>
       </div>
       <!--END OF EXAMPLE CARD-->
@@ -119,10 +156,15 @@
           <div class="user-pass">
             <form id="loginForm">
               <label for="username-login">Username:</label>
-              <input type="text" id="username-login" name="username" required>
+              <input type="text" id="username-login" name="username" required />
               <label for="password-login">Password:</label>
-              <input type="password" id="password-login" name="passwords" required>
-              <input type="submit" value="Login"></input>
+              <input
+                type="password"
+                id="password-login"
+                name="passwords"
+                required
+              />
+              <input type="submit" value="Login" />
             </form>
           </div>
           <div id="message"></div>
@@ -136,17 +178,21 @@
           <h2>Sign Up</h2>
           <form id="signupForm">
             <label for="username-signup">Username:</label>
-            <input type="text" id="username-signup" name="username" required>
+            <input type="text" id="username-signup" name="username" required />
             <label for="password-signup">Password:</label>
-            <input type="password" id="password-signup" name="passwords" required>
-            <input type="submit"></input>
+            <input
+              type="password"
+              id="password-signup"
+              name="passwords"
+              required
+            />
+            <input type="submit" />
           </form>
         </div>
       </div>
       <!--END OF SIGNUP MODALS-->
       <!--MY CARDS LIST-->
-      <ul class="myCards">
-      </ul>
+      <ul class="myCards"></ul>
       <!--END OF MYCARDS LIST-->
       <!--FOOTER -->
       <div class="footer-container">

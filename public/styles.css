@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  text-decoration: none;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+  background: linear-gradient(to bottom, #2d2c2c, #c6c3c3);
+  color: #313030;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 95%;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 95%;
+}
+
+.form-example-container {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  border: 2px solid red;
+}
+
+.navbar {
+  background-color: #9e9e9e;
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
+  width: 98%;
+  margin: 10px 2%;
+}
+
+nav {
+    border: 1px solid red;
+}
+
+.navbar h1 {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px black;
+  font-size: 2.25rem;
+}
+
+.card-nav {
+    border: 1px solid red;
+    display: flex;
+    gap: 20%;
+}
+
+#addCard {
+    border: 1px solid black;
+}
+
+#myCards {
+    border: 1px solid black;
+}
+
+#spacer {
+    border: 1px solid purple;
+    width: 5%;
+}
+.search {
+    display: flex;
+    gap: 7%;
+}
+
+#searchBar-field {
+    padding: 4%;
+    border-radius: 8px;
+    box-shadow: 1px 1px;
+}
+
+#search-btn {
+    border-radius: 4px;
+    box-shadow: 1px 1px;
+}
+
+.account-btns {
+  border: 2px solid red;
+  display: flex;
+}
+
+.account-btns p {
+  margin: 0 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#login-btn {
+  border-right: 1px solid #ffffff;
+  border: 1px solid red;
+}
+
+#signup-btn {
+    border: 1px solid red;
+}
+
+#name-input,
+#phone-input,
+#occupation-input,
+#email-input {
+  padding: 3%;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 2px 2px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.form-item {
+  margin: 5% 0;
+}
+
+label {
+  font-size: 1.25rem;
+  text-shadow: 1px 1px 1px rgb(41, 40, 40);
+  color: #c6c3c3;
+}
+
+#form-h2 {
+  color: #c6c3c3;
+  text-shadow: 1px 1px 1px rgb(41, 40, 40);
+  padding: 2%;
+  padding-bottom: 4%;
+  text-align: center;
+}
+
+.form-container {
+  padding: 2% 3%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  margin: 10px;
+  width: 25%;
+  border: 2px solid rgb(47, 46, 46);
+  background-color: rgba(200, 167, 236, 0.2);
+  box-shadow: 8px 8px;
+  gap: 5%;
+}
+
+#form-form {
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+  width: 100%;
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.phone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#form-submit-btn {
+  background-color: #454547;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#submit-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.example-container {
+  border-radius: 15px;
+  margin: 10px;
+  padding: 20px;
+  width: 35%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 5px 5px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 15px;
+}
+
+.close-login,
+.close-signup {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-login:hover,
+.close-login:focus,
+.close-signup:hover,
+.close-signup:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-container {
+  background-color: #9e9e9e;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-radius: 15px;
+}
