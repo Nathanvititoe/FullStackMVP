@@ -18,14 +18,8 @@
       <!--NAVBAR CONTAINER-->
       <nav class="navbar">
         <div class="card-nav">
-          <div id="addCard">
-            <button id="addCard-btn">+</button>
-          </div>
-          <div id="myCards">
-            <button id="myCards-btn">My Cards</button>
-          </div>
-        </div>
-        <div id="spacer">
+          <button id="addCard-btn">+</button>
+          <button id="myCards-btn">My Cards</button>
         </div>
         <a href="/index.html"><h1>Digital Business Card Maker</h1></a>
         <form action="/cards" method="GET" id="search-form">
@@ -119,6 +113,15 @@
                   id="email-input"
                 />
               </div>
+              <div class="color-selection">
+                <label for="color-selector">Background</label>
+                <input type="color" class="color-selector" name="color-selector" id="background-selector">
+              </div>
+              <div class="color-selection">
+                <label for="color-selector">Text Color</label>
+                <input type="color" class="color-selector" name="color-selector" id="text-selector">
+              </div>
+
             </div>
             <div id="submit-btn-container">
               <input id="form-submit-btn" type="submit" value="Save" />
@@ -128,22 +131,13 @@
         <!--END OF FORM CONTAINER-->
         <!--EXAMPLE CARD-->
         <div class="example-container">
-          <div class="top-half">
-            <div class="img-container">
-              <!-- <img src="/images/doggo.jpeg" alt="doggo"> -->
-            </div>
-            <div class="title-header">
-              <!--to be changed-->
-              <h2 id="name-title"></h2>
-              <h5 id="job-title"></h5>
-            </div>
-            <div class="bottom-half">
-              <div class="contact-info">
-                <!--to be changed-->
-                <p id="phone-title"></p>
-                <p id="email-title"></p>
-              </div>
-            </div>
+          <div class="title-header">
+            <h2 id="name-title"></h2>
+            <h4 id="job-title"></h4>
+          </div>
+          <div class="contact-info">
+            <p id="phone-title"></p>
+            <p id="email-title"></p>
           </div>
         </div>
       </div>
@@ -151,20 +145,24 @@
       <!--Login modals-->
       <div id="login-modal" class="modal">
         <div class="modal-content">
-          <span class="close-login">&times;</span>
-          <h2>Login</h2>
+          <div class="close-login">&times;</div>
           <div class="user-pass">
+          <h2>Login</h2>
             <form id="loginForm">
-              <label for="username-login">Username:</label>
-              <input type="text" id="username-login" name="username" required />
-              <label for="password-login">Password:</label>
-              <input
+              <div class="username-container">
+                <label for="username-login" class="login-label">Username</label>
+                <input type="text" id="username-login" name="username" required />
+              </div>
+              <div class="password-container">
+                <label for="password-login" class="login-label">Password</label>
+                <input
                 type="password"
                 id="password-login"
                 name="passwords"
                 required
-              />
-              <input type="submit" value="Login" />
+                />
+              </div>
+              <input type="submit" value="Login" class="login-submit" />
             </form>
           </div>
           <div id="message"></div>
@@ -175,19 +173,26 @@
       <div id="signup-modal" class="modal">
         <div class="modal-content">
           <span class="close-signup">&times;</span>
-          <h2>Sign Up</h2>
-          <form id="signupForm">
-            <label for="username-signup">Username:</label>
-            <input type="text" id="username-signup" name="username" required />
-            <label for="password-signup">Password:</label>
-            <input
-              type="password"
-              id="password-signup"
-              name="passwords"
-              required
-            />
-            <input type="submit" />
-          </form>
+          <div class="user-pass">
+
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+              <div class="username-container">
+                <label for="username-signup" class="login-label">Username</label>
+                <input type="text" id="username-signup" name="username" required />
+              </div>
+              <div class="password-container">
+                <label for="password-signup" class="login-label">Password</label>
+                <input
+                type="password"
+                id="password-signup"
+                name="passwords"
+                required
+                />
+              </div>
+              <input type="submit" value="Sign Up" class="login-submit"/>
+            </form>
+          </div>
         </div>
       </div>
       <!--END OF SIGNUP MODALS-->

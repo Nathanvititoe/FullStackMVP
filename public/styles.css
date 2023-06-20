@@ -26,22 +26,20 @@ body {
   display: flex;
   justify-content: center;
   gap: 10%;
-  border: 2px solid red;
+  padding: 2% 0;
+  margin: 5% 0;
 }
 
 .navbar {
   background-color: #9e9e9e;
-  padding: 20px;
+  padding: 1%;
+  height: 15%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px;
   width: 98%;
   margin: 10px 2%;
-}
-
-nav {
-    border: 1px solid red;
 }
 
 .navbar h1 {
@@ -51,41 +49,45 @@ nav {
 }
 
 .card-nav {
-    border: 1px solid red;
-    display: flex;
-    gap: 20%;
+  display: flex;
+  justify-content: space-between;
+  width: 17%;
+  padding: 2% 0;
+  height: 45%;
 }
 
-#addCard {
-    border: 1px solid black;
+#addCard-btn {
+  width: 20%;
+  font-size: 1.5rem;
+  box-shadow: 1px 1px;
+  border-radius: 4px;
 }
 
-#myCards {
-    border: 1px solid black;
+#myCards-btn {
+  width: 40%;
+  height: 100%;
+  border-radius: 4px;
+  box-shadow: 1px 1px;
 }
 
-#spacer {
-    border: 1px solid purple;
-    width: 5%;
-}
 .search {
-    display: flex;
-    gap: 7%;
+  display: flex;
+  gap: 7%;
 }
 
 #searchBar-field {
-    padding: 4%;
-    border-radius: 8px;
-    box-shadow: 1px 1px;
+  padding: 4%;
+  border-radius: 8px;
+  box-shadow: 1px 1px;
 }
 
 #search-btn {
-    border-radius: 4px;
-    box-shadow: 1px 1px;
+  border-radius: 4px;
+  box-shadow: 1px 1px;
+  padding: 2%;
 }
 
 .account-btns {
-  border: 2px solid red;
   display: flex;
 }
 
@@ -97,11 +99,6 @@ nav {
 
 #login-btn {
   border-right: 1px solid #ffffff;
-  border: 1px solid red;
-}
-
-#signup-btn {
-    border: 1px solid red;
 }
 
 #name-input,
@@ -144,7 +141,7 @@ label {
   flex-direction: column;
   border-radius: 15px;
   margin: 10px;
-  width: 25%;
+  width: 30%;
   border: 2px solid rgb(47, 46, 46);
   background-color: rgba(200, 167, 236, 0.2);
   box-shadow: 8px 8px;
@@ -192,18 +189,50 @@ label {
 }
 
 #submit-btn-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  padding: 6%;
+  margin-bottom: 5%;
+}
+
+.color-selection {
+  display: flex;
+  justify-content: space-between;
+  margin: 3% 0;
+}
+
+.color-selector {
+  border: none;
+  outline: none;
+  padding: 0;
+  border-radius: 4px;
 }
 
 .example-container {
   border-radius: 15px;
   margin: 10px;
   padding: 20px;
-  width: 35%;
+  width: 40%;
   box-sizing: border-box;
   background-color: #ffffff;
-  box-shadow: 5px 5px;
+  box-shadow: 8px 8px rgb(34, 33, 33);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10% 5%;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10%;
+}
+
+.title-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
 }
 
 .modal {
@@ -223,18 +252,86 @@ label {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 0 7% 5% 5%;
   border: 1px solid #888;
-  width: 80%;
+  width: fit-content;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+#signupForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+  }
+
+.user-pass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5%;
+  margin: 3%;
+}
+
+.username-container {
+  display: flex;
+  gap: 10%;
+  margin: 5%;
+  padding: 5% 0 5% 0;
+}
+
+#username-login {
+  border-radius: 3px;
+  border-bottom: 1px solid black;
+}
+
+#password-login {
+  border-radius: 3px;
+  border-bottom: 1px solid black;
+}
+
+.login-label {
+  color: black;
+}
+
+.login-submit {
+  background-color: #454547;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.password-container {
+  display: flex;
+  gap: 11%;
+  margin: 5%;
+  padding-bottom: 10%;
 }
 
 .close-login,
 .close-signup {
   color: #aaaaaa;
-  float: right;
-  font-size: 28px;
+  font-size: 3rem;
+  width: 100%;
   font-weight: bold;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .close-login:hover,

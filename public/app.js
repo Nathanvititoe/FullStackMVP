@@ -3,10 +3,10 @@ const url = "http://localhost:3001";
 let route = "cards";
 let currentUser = {
   username: "johndoe",
-  name : 'John Doe',
-  job : 'Farmer',
-  phone : '1234567890',
-  email : 'johndoe420@gmail.com'
+  name: "John Doe",
+  job: "Farmer",
+  phone: "1234567890",
+  email: "johndoe420@gmail.com",
 };
 // //fetch request for initial data
 // async function getHomePage() {
@@ -65,14 +65,13 @@ const readLoginData = async () => {
 //sets logged in user as current user
 const saveCurrentUser = async (user) => {
   try {
-
-      const response = await fetch(`${url}/cards/${user}`);
-      const data = await response.json();
-      currentUser.name = data.name;
-      currentUser.phone = data.phone_number;
-      currentUser.job = data.occupation;
-      currentUser.email = data.email;
-    } catch (err) {
+    const response = await fetch(`${url}/cards/${user}`);
+    const data = await response.json();
+    currentUser.name = data.name;
+    currentUser.phone = data.phone_number;
+    currentUser.job = data.occupation;
+    currentUser.email = data.email;
+  } catch (err) {
     console.log(err.message);
   }
 };
@@ -148,7 +147,7 @@ const saveCurrentCard = async () => {
       phone_number: parseInt(phone),
       occupation: occupation,
       email: email,
-      username: currentUser.username
+      username: currentUser.username,
     };
     const response = await fetch(`${url}/cards`, {
       method: "POST",
@@ -166,8 +165,8 @@ const saveCurrentCard = async () => {
 const workingSearchBar = () => {
   try {
     const searchBtn = document.querySelector("#search-btn");
-  searchBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
+    searchBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
       const searchBar = document.querySelector("#searchBar-field").value;
       let user = searchBar;
       const response = await fetch(`${url}/cards/${user}`);
@@ -179,31 +178,30 @@ const workingSearchBar = () => {
 };
 workingSearchBar();
 
-
 //gets elements from form to fill html
-const fillCard =  () => {
+const fillCard = () => {
   //add listener and change to name field
-  let name = document.querySelector('#name-input');
-  name.addEventListener('input', () => {
-    let nameCard = document.querySelector('#name-title');
+  let name = document.querySelector("#name-input");
+  name.addEventListener("input", () => {
+    let nameCard = document.querySelector("#name-title");
     nameCard.textContent = name.value;
   });
-//add listener and change to job field
-  let job = document.querySelector('#occupation-input');
-  job.addEventListener('input', () => {
-    let jobCard = document.querySelector('#job-title');
+  //add listener and change to job field
+  let job = document.querySelector("#occupation-input");
+  job.addEventListener("input", () => {
+    let jobCard = document.querySelector("#job-title");
     jobCard.textContent = job.value;
   });
-//add listener and change to phone field
-  let phone = document.querySelector('#phone-input');
-  phone.addEventListener('input', () => {
-    let phoneCard = document.querySelector('#phone-title');
+  //add listener and change to phone field
+  let phone = document.querySelector("#phone-input");
+  phone.addEventListener("input", () => {
+    let phoneCard = document.querySelector("#phone-title");
     phoneCard.textContent = phone.value;
   });
-//add listener and change to email field
-  let email = document.querySelector('#email-input');
-  email.addEventListener('input', () => {
-    let emailCard = document.querySelector('#email-title');
+  //add listener and change to email field
+  let email = document.querySelector("#email-input");
+  email.addEventListener("input", () => {
+    let emailCard = document.querySelector("#email-title");
     emailCard.textContent = email.value;
   });
 };
@@ -211,28 +209,28 @@ fillCard();
 
 //create functionality for myCards btn FIX MEEE
 const myCardsBtn = () => {
-  const myCardsBtn = document.querySelector('#myCards-btn');
-  myCardsBtn.addEventListener('click', async () => {
+  const myCardsBtn = document.querySelector("#myCards-btn");
+  myCardsBtn.addEventListener("click", async () => {
     const user = currentUser.username;
-    const formContainer = document.querySelector('.form-container');
-    formContainer.style.display = 'none';
-    
-    const exampleContainer = document.querySelector('.example-container');
-    exampleContainer.style.display = 'none';
+    const formContainer = document.querySelector(".form-container");
+    formContainer.style.display = "none";
+
+    const exampleContainer = document.querySelector(".example-container");
+    exampleContainer.style.display = "none";
 
     //get all request based on username
     try {
-      if(user === undefined || user === null) { 
+      if (user === undefined || user === null) {
         alert('must be logged in to view "My Cards"');
       }
       const response = await fetch(`${url}/cards/${user}`);
       const data = await response.json();
-      //for of loop 
-      for(let item in data[0]) {
-        const ul = document.querySelector('.myCards');
-        const span = document.createElement('span');
-        span.setAttribute('class','mycards-list');
-        const li = document.createElement('li');
+      //for of loop
+      for (let item in data[0]) {
+        const ul = document.querySelector(".myCards");
+        const span = document.createElement("span");
+        span.setAttribute("class", "mycards-list");
+        const li = document.createElement("li");
         li.textContent = item[0].occupation;
         span.appendChild(li);
         ul.appendChild(span);
@@ -241,40 +239,57 @@ const myCardsBtn = () => {
       console.log(err.message);
     }
   });
-//add event listeners to list items
-//if clicked, display back on, info filled from that card
+  //add event listeners to list items
+  //if clicked, display back on, info filled from that card
 };
 myCardsBtn();
 
 //set default values of home page
 const setDefaults = () => {
-  let nameInput = document.querySelector('#name-input');
-  let nameCard = document.querySelector('#name-title');
-  let phoneInput = document.querySelector('#phone-input');
-  let phoneCard = document.querySelector('#phone-title');
-  let jobInput = document.querySelector('#occupation-input');
-  let jobCard = document.querySelector('#job-title');
-  let emailInput = document.querySelector('#email-input');
-  let emailCard = document.querySelector('#email-title');
+  let nameInput = document.querySelector("#name-input");
+  let nameCard = document.querySelector("#name-title");
+  let phoneInput = document.querySelector("#phone-input");
+  let phoneCard = document.querySelector("#phone-title");
+  let jobInput = document.querySelector("#occupation-input");
+  let jobCard = document.querySelector("#job-title");
+  let emailInput = document.querySelector("#email-input");
+  let emailCard = document.querySelector("#email-title");
 
-  nameInput.value = '';
-  nameCard.textContent = 'John Doe';
-  phoneInput.value = '';
-  phoneCard.textContent = '1234567890';
-  jobInput.value = '';
-  jobCard.textContent = 'Farmer';
-  emailInput.value = '';
-  emailCard.textContent = 'johndoe@gmail.com';
- }
+  nameInput.value = "";
+  nameCard.textContent = "John Doe";
+  phoneInput.value = "";
+  phoneCard.textContent = "1234567890";
+  jobInput.value = "";
+  jobCard.textContent = "Farmer";
+  emailInput.value = "";
+  emailCard.textContent = "johndoe@gmail.com";
+};
 setDefaults();
- //add new card btn (Resets values to default)
- const newCardBtn = () => {
+//add new card btn (Resets values to default)
+const newCardBtn = () => {
   //add event listener to btn
-  const addCardBtn = document.querySelector('#addCard-btn');
-  addCardBtn.addEventListener('click', () => {
+  const addCardBtn = document.querySelector("#addCard-btn");
+  addCardBtn.addEventListener("click", () => {
     setDefaults();
   });
-  
- };
- newCardBtn();
-  
+};
+newCardBtn();
+
+//colorPicker functionality
+const colorPicker = () => {
+  const backgroundSelector = document.querySelector("#background-selector");
+  const textSelector = document.querySelector("#text-selector");
+  //add event listener to color selector
+  backgroundSelector.addEventListener("input", (e) => {
+    const exampleCard = document.querySelector(".example-container");
+    const color = e.target.value;
+    exampleCard.style.backgroundColor = color;
+  });
+  //when color changed , change text
+  textSelector.addEventListener("input", (e) => {
+    const exampleCard = document.querySelector(".example-container");
+    const color = e.target.value;
+    exampleCard.style.color = color;
+  });
+};
+colorPicker();
