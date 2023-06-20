@@ -8,15 +8,6 @@ let currentUser = {
   phone: "1234567890",
   email: "johndoe420@gmail.com",
 };
-// //fetch request for initial data
-// async function getHomePage() {
-//   try {
-//     const response = await fetch(`${url}/${route}/${user}`);
-//     const data = await response.json();
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// }
 
 //create login modal
 const createLoginModal = () => {
@@ -141,12 +132,19 @@ const saveCurrentCard = async () => {
   let phone = document.querySelector("#phone-input").value;
   const occupation = document.querySelector("#occupation-input").value;
   const email = document.querySelector("#email-input").value;
+  const backgroundColor = document.querySelector("#background-selector").value;
+  const textColor = document.querySelector("#text-selector").value;
   try {
+    if (currentUser.username === undefined || currentUser.username === null) {
+      alert("must be logged in");
+    }
     const data = {
       name: name,
-      phone_number: parseInt(phone),
+      phone_number: phone,
       occupation: occupation,
       email: email,
+      backgroundColor: backgroundColor,
+      textColor: textColor,
       username: currentUser.username,
     };
     const response = await fetch(`${url}/cards`, {
@@ -171,6 +169,7 @@ const workingSearchBar = () => {
       let user = searchBar;
       const response = await fetch(`${url}/cards/${user}`);
       const data = await response.json();
+      displaySearchResults(data);
     });
   } catch (err) {
     console.log(err.message);
@@ -226,12 +225,13 @@ const myCardsBtn = () => {
       const response = await fetch(`${url}/cards/${user}`);
       const data = await response.json();
       //for of loop
-      for (let item in data[0]) {
+      console.log(data);
+      for (let item of data) {
         const ul = document.querySelector(".myCards");
         const span = document.createElement("span");
         span.setAttribute("class", "mycards-list");
         const li = document.createElement("li");
-        li.textContent = item[0].occupation;
+        li.textContent = data[item];
         span.appendChild(li);
         ul.appendChild(span);
       }
@@ -265,6 +265,7 @@ const setDefaults = () => {
   emailCard.textContent = "johndoe@gmail.com";
 };
 setDefaults();
+
 //add new card btn (Resets values to default)
 const newCardBtn = () => {
   //add event listener to btn
@@ -293,3 +294,77 @@ const colorPicker = () => {
   });
 };
 colorPicker();
+
+//display search results
+const displaySearchResults = (data) => {
+  const formContainer = document.querySelector(".form-container");
+  formContainer.style.display = "none";
+
+  const exampleContainer = document.querySelector(".example-container");
+  exampleContainer.style.display = "none";
+
+  const ul = document.querySelector(".myCards");
+  const generalContainer = document.querySelector(".cardsList");
+  const divContainer = document.createElement("div");
+  generalContainer.appendChild(divContainer);
+  divContainer.setAttribute("class", "divContainer");
+  divContainer.appendChild(ul);
+  ul.innerHTML = "";
+  try {
+    //iterate through data array
+    for (let i = 0; i < data.length; i++) {
+      const cardList = document.createElement("div");
+      cardList.setAttribute("class", "allPersonCards");
+      ul.appendChild(cardList);
+      let value = data[i];
+
+      const titleDiv = document.createElement("div");
+      titleDiv.setAttribute("class", "title-header");
+      cardList.appendChild(titleDiv);
+
+      const nameh2 = document.createElement("h2");
+      nameh2.innerHTML = value.name;
+      titleDiv.appendChild(nameh2);
+
+      const occupationh4 = document.createElement("h4");
+      occupationh4.innerHTML = value.occupation;
+      titleDiv.appendChild(occupationh4);
+
+      const contactInfo = document.createElement("div");
+      contactInfo.setAttribute("class", "contact-info");
+      cardList.appendChild(contactInfo);
+
+      const phonenumber = document.createElement("p");
+      phonenumber.innerHTML = value.phone_number;
+      contactInfo.appendChild(phonenumber);
+
+      const email = document.createElement("p");
+      email.innerHTML = value.email;
+      contactInfo.appendChild(email);
+
+      cardList.style.backgroundColor = value.background_color;
+      cardList.style.color = value.text_color;
+
+      cardList.addEventListener("click", () => {
+        openSavedCard(data);
+      });
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+//open saved Card
+const openSavedCard = (data) => {
+  console.log(data);
+  const cardList = document.querySelector(".cardsList");
+  cardList.style.display = "none";
+
+  const formContainer = document.querySelector(".form-container");
+  formContainer.style.display = "flex";
+
+  const exampleContainer = document.querySelector(".example-container");
+  exampleContainer.style.display = "flex";
+
+  const nameh2 = document.querySelector('#name-title'); 
+};

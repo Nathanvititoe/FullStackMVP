@@ -19,10 +19,10 @@ app.use(express.static("public"));
 app.use(express.json());
 
 //default home route
-app.get('/', async (req, res) => {
-const results = client.query('SELECT * FROM business_cards WHERE username = nathanvititoe');
-res.send('nathan account').status(200);
-});
+// app.get('/', async (req, res) => {
+// const results = await client.query('SELECT * FROM business_cards WHERE username = nathanvititoe');
+// res.send('nathan account').status(200);
+// });
 //ALL BUSINESS CARD REST ROUTES
 
 //create GET ALL route (shows all cards)
@@ -40,6 +40,7 @@ app.get("/cards", async (req, res) => {
     res.send(err.message).status(500);
   }
 });
+
 //create  GET ONE route (shows all of A users cards)
 app.get("/cards/:username", async (req, res) => {
   try {
@@ -53,8 +54,7 @@ app.get("/cards/:username", async (req, res) => {
       res.send("this card doesn't exist").status(404);
       return;
     }
-    console.log(results.rows);
-    res.send(results.rows[0]).status(200);
+    res.send(results.rows).status(200);
   } catch (err) {
     console.log(err.message);
     res.send(err.message).status(500);
@@ -64,20 +64,15 @@ app.get("/cards/:username", async (req, res) => {
 //create POST route for new business cards
 app.post("/cards", async (req, res) => {
   try {
-    const { name, phone_number, email, occupation, username } = req.body;
-    if (name.length <= 0 || phone_number.toString().length < 10) {
-      console.log("invalid data inputs");
-      res.send("invalid data inputs").status(400);
-      return;
-    }
+    const { name, phone_number, email, occupation, backgroundColor, textColor, username } = req.body;
     const results = await client.query(
-      "INSERT INTO business_cards (name, phone_number, email, occupation, username)VALUES($1,$2,$3,$4,$5)",
-      [name, phone_number, email, occupation, username]
+      "INSERT INTO business_cards (name, phone_number, email, occupation, background_color, text_color, username)VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *",
+      [name, phone_number, email, occupation,backgroundColor, textColor, username]
     );
-    res.send(results.rows[0]).status(201);
+    res.send(results.rows).status(201);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.error(err);
+    res.send(err).status(500);
   }
 });
 

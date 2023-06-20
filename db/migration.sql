@@ -12,7 +12,8 @@ CREATE TABLE business_cards (
     phone_number VARCHAR,
     email TEXT,
     occupation TEXT,
-    image TEXT,
+    background_color text,
+    text_color text,
     username VARCHAR,
     FOREIGN KEY (username) REFERENCES users(username)
 );
