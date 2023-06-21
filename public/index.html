@@ -28,12 +28,17 @@
             <input type="submit" value="Search" id="search-btn" />
           </div>
         </form>
-        <div class="account-btns">
+        <div class="top-right">
+          <div class="account-btns">
           <div id="login-btn">
             <p>login</p>
           </div>
           <div id="signup-btn">
             <p>sign up</p>
+          </div>
+        </div>
+          <div class="loginMessage">
+            <p id="message"></p>
           </div>
         </div>
       </nav>
@@ -42,12 +47,6 @@
       <div class="form-example-container">
         <div class="form-container">
           <h2 id="form-h2">Enter your information!</h2>
-          <form
-            action="/cards"
-            method="post"
-            class="form-fields"
-            id="form-form"
-          >
             <div class="form-box">
               <div class="name">
                 <label
@@ -127,10 +126,9 @@
               <div id="submit-btn-container">
                 <button id="form-submit-btn" type="submit" >Create New Card</button>
               </div>
+            <div class="edit-btn">
+              <button id="edit">Save Changes</button>
             </div>
-          </form>
-          <div class="edit-btn">
-            <button id="edit">Edit</button>
           </div>
         </div>
         <!--END OF FORM CONTAINER-->
@@ -146,6 +144,7 @@
           </div>
         </div>
       </div>
+    </div>
       <!--END OF EXAMPLE CARD-->
       <!--Login modals-->
       <div id="login-modal" class="modal">
@@ -172,7 +171,7 @@
           </div>
           <div id="message"></div>
         </div>
-      </div>
+        </div>
       <!--END OF LOGIN MODALS-->
       <!--SignUp modals-->
       <div id="signup-modal" class="modal">
@@ -213,6 +212,5 @@
         <p>Fueled by Coke Zero</p>
       </footer>
       <!--END OF FOOTER-->
-    </div>
   </body>
 </html>

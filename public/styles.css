@@ -64,6 +64,14 @@ body {
   box-shadow: 1px 1px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+#addCard-btn:hover {
+  transform: scale(1.05);
+  background-color: #3f3d3d;
+  color: rgb(233, 236, 239);
+  box-shadow: 0px 0px 3px 3px #ffffff;
 }
 
 #myCards-btn {
@@ -72,6 +80,14 @@ body {
   border-radius: 4px;
   box-shadow: 1px 1px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s;
+}
+
+#myCards-btn:hover {
+  transform: scale(1.05);
+  background-color: #3f3d3d;
+  color: rgb(233, 236, 239);
+  box-shadow: 0px 0px 3px 3px #ffffff;
 }
 
 .search {
@@ -90,6 +106,20 @@ body {
   box-shadow: 1px 1px;
   padding: 2%;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s;
+}
+
+#search-btn:hover {
+  transform: scale(1.05);
+  background-color: #3f3d3d;
+  color: rgb(233, 236, 239);
+  box-shadow: 0px 0px 3px 3px #ffffff;
+}
+
+.top-right {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
 }
 
 .account-btns {
@@ -100,6 +130,11 @@ body {
   margin: 0 10px;
   color: #ffffff;
   cursor: pointer;
+}
+
+#message {
+  color: rgb(174, 3, 3);
+  text-shadow: 0.5px rgb(41, 39, 39);
 }
 
 #login-btn {
@@ -189,22 +224,36 @@ label {
   justify-content: space-evenly;
 }
 
-#form-submit-btn, #edit {
+#form-submit-btn,
+#edit {
   background-color: #454547;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
+  transition: 0.3s all ease-in-out;
 }
 
-#submit-btn-container, .edit-btn {
+#form-submit-btn:hover, #edit:hover {
+    transform: scale(1.05);
+    background-color: #bfbbbb;
+    color: rgb(17, 17, 17);
+    box-shadow: 0px 0px 3px 3px #ffffff;
+  }
+
+#submit-btn-container,
+.edit-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 6%;
   margin-bottom: 5%;
   width: 20%;
+}
+
+.edit-btn {
+  display: none;
 }
 
 .color-selection {
@@ -244,7 +293,6 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
 }
 
 .modal {
@@ -335,12 +383,16 @@ label {
   padding-bottom: 10%;
 }
 
+.delete-card {
+  height: 20%;
+}
+
 .close-login,
 .close-signup,
 .delete-card {
-  color: #aaaaaa;
+  color: #232222;
   font-size: 3rem;
-  width: 100%;
+  width: 5%;
   font-weight: bold;
   display: flex;
   align-items: flex-end;
@@ -353,7 +405,7 @@ label {
 .close-signup:focus,
 .delete-card:hover,
 .delete-card:focus {
-  color: #000;
+  color: #d01414;
   text-decoration: none;
   cursor: pointer;
 }
@@ -373,9 +425,14 @@ label {
   box-shadow: 8px 8px rgb(34, 33, 33);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 3%;
   cursor: pointer;
+  transition: 0.2s all ease-in-out;
+}
+
+.allPersonCards:hover {
+  transform: scale(1.1);
 }
 
 .footer-container {

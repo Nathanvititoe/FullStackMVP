@@ -41,6 +41,8 @@ const readLoginData = async () => {
     } else {
       console.log("incorrect login information");
     }
+    const message = document.querySelector("#message");
+    message.innerHTML = `Welcome, ${username}`;
   } catch (err) {
     console.error(err);
   }
@@ -91,6 +93,8 @@ const readSignUpdata = async () => {
       },
       body: JSON.stringify(data),
     });
+    const message = document.querySelector("#message");
+    message.innerHTML = `Welcome, ${username}`;
   } catch (err) {
     console.error(err.message);
   }
@@ -98,9 +102,8 @@ const readSignUpdata = async () => {
 
 //adds event listener to saveBtn and calls saveCurrentCard()
 const formSubmitBtn = () => {
-  const form = document.querySelector("#form-form");
   const submitBtn = document.querySelector("#form-submit-btn");
-  form.addEventListener("submit", function (event) {
+  submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
     saveCurrentCard();
   });
@@ -139,6 +142,7 @@ const saveCurrentCard = async () => {
       },
       body: JSON.stringify(data),
     });
+    alert("new card saved!");
   } catch (err) {
     console.error(err.message);
   }
@@ -201,6 +205,7 @@ const myCardsBtn = () => {
       currentUser = JSON.parse(currentUser);
       const response = await fetch(`${url}/cards/${currentUser}`);
       const data = await response.json();
+      console.log(data);
       displaySearchResults(data);
     });
   } catch (err) {
@@ -304,7 +309,6 @@ const displaySearchResults = (data) => {
 
       const occupationh4 = document.createElement("h4");
       occupationh4.innerHTML = value.occupation;
-      occupationh4.dataset.occupation = value.occupation;
       titleDiv.appendChild(occupationh4);
 
       const contactInfo = document.createElement("div");
@@ -314,41 +318,29 @@ const displaySearchResults = (data) => {
       const phonenumber = document.createElement("p");
       phonenumber.setAttribute("id", "clickphone");
       phonenumber.innerHTML = value.phone_number;
-      phonenumber.dataset.phonenumber = value.phone_number;
       contactInfo.appendChild(phonenumber);
 
       const email = document.createElement("p");
       email.setAttribute("id", "clickemail");
       email.innerHTML = value.email;
-      email.dataset.email = value.email;
       contactInfo.appendChild(email);
 
       cardList.style.backgroundColor = value.background_color;
       cardList.style.color = value.text_color;
 
-      // const deleteBtn = document.createElement("div");
-      // deleteBtn.setAttribute("class", "delete-card");
-      // deleteBtn.innerHTML = "&times;";
-      // deleteBtn.dataset.deleteBtn = value.card_id;
-      // cardList.prepend(deleteBtn);
+      const deleteBtn = document.createElement("div");
+      deleteBtn.setAttribute("class", "delete-card");
+      deleteBtn.innerHTML = "&times;";
+      deleteBtn.dataset.deleteBtn = value.card_id;
+      cardList.prepend(deleteBtn);
 
-      // const deleteBtns = document.querySelectorAll(".delete-card");
-      // deleteBtns.forEach((deleteBtn) => {
-      //   deleteBtn.addEventListener("click", (e) => {
-      //     e.stopPropagation();
-      //     const cardID = e.target.dataset.deleteBtn;
-      //     e.target.parentNode.classList.add("toBeDeleted");
-      //     deleteCard(cardID);
-      //   });
-      // });
+      deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const cardID = e.target.dataset.deleteBtn;
+        e.target.parentNode.classList.add("toBeDeleted");
+        deleteCard(cardID);
+      });
       cardList.addEventListener("click", (e) => {
-        // const selectedCard = {
-        //   name: e.currentTarget.querySelector("h2"),
-        //   occupation: e.currentTarget.querySelector("h4"),
-        //   phone: e.currentTarget.querySelector("#clickphone"),
-        //   email: e.currentTarget.querySelector("#clickemail")
-        // };
-
         const cardId = e.currentTarget.dataset.name;
         openSavedCard(cardId);
       });
@@ -369,6 +361,13 @@ const openSavedCard = async (cardId) => {
   const exampleContainer = document.querySelector(".example-container");
   exampleContainer.style.display = "flex";
 
+  const saveBtn = document.querySelector('.edit-btn')
+  saveBtn.style.display = 'flex';
+
+  const newCardBtn = document.querySelector('#submit-btn-container');
+  newCardBtn.style.display = 'none';
+  newCardBtn.disabled = 'true';
+
   const nameh2 = document.querySelector("#name-title");
   const jobh4 = document.querySelector("#job-title");
   const phone = document.querySelector("#phone-title");
@@ -378,7 +377,6 @@ const openSavedCard = async (cardId) => {
   user = JSON.parse(user);
   const response = await fetch(`${url}/cards/${user}/${cardId}`);
   const data = await response.json();
-  console.log(data);
 
   nameh2.innerHTML = data[0].name;
   jobh4.innerHTML = data[0].occupation;
@@ -389,23 +387,23 @@ const openSavedCard = async (cardId) => {
   editCard(cardId);
 };
 
-// //add delete option to each card
-// const deleteCard = async (cardID) => {
-//   try {
-//     //set deleted card inner html to ''
-//     const toDelete = document.querySelector(".toBeDeleted");
-//     toDelete.style.display = "none";
-//     toDelete.innerHTML = "";
-//     //async delete route for that card id
-//     const response = await fetch(`${url}/cards/${cardID}`, {
-//       method: "DELETE",
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+//add delete option to each card
+const deleteCard = async (cardID) => {
+  try {
+    //set deleted card inner html to ''
+    const toDelete = document.querySelector(".toBeDeleted");
+    toDelete.style.display = "none";
+    toDelete.innerHTML = "";
+    //async delete route for that card id
+    const response = await fetch(`${url}/cards/${cardID}`, {
+      method: "DELETE",
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-//edit card btn
+//edit card btn and UPDATE functionality
 const editCard = (cardId) => {
   const editBtn = document.querySelector("#edit");
   editBtn.addEventListener("click", async () => {
@@ -413,21 +411,21 @@ const editCard = (cardId) => {
     let job = document.querySelector("#occupation-input").value;
     let phone = document.querySelector("#phone-input").value;
     let email = document.querySelector("#email-input").value;
-    let background = document.querySelector('#background-selector').value;
-    let textColor = document.querySelector('#text-selector').value;
+    let background = document.querySelector("#background-selector").value;
+    let textColor = document.querySelector("#text-selector").value;
 
     let user = localStorage.getItem("currentUser");
     user = JSON.parse(user);
 
     const JsonObj = {
-      name : name,
-      occupation : job,
+      name: name,
+      occupation: job,
       phone_number: phone,
-      email : email,
-      background_color : background,
-      text_color : textColor,
-      username : user
-    }
+      email: email,
+      background_color: background,
+      text_color: textColor,
+      username: user,
+    };
     try {
       const response = await fetch(`${url}/cards/${cardId}`, {
         method: "PUT",
@@ -436,6 +434,7 @@ const editCard = (cardId) => {
         },
         body: JSON.stringify(JsonObj),
       });
+      alert("Changes have been made");
     } catch (err) {
       console.error(err);
     }
