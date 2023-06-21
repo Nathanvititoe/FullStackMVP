@@ -219,13 +219,6 @@ label {
   gap: 5%;
 }
 
-#form-form {
-  display: flex;
-  flex-direction: column;
-  align-items: space-evenly;
-  width: 100%;
-}
-
 .name {
   display: flex;
   justify-content: space-between;
