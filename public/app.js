@@ -1,13 +1,5 @@
 // const url = 'https://mvpwebservice.onrender.com';
 const url = "http://localhost:3001";
-let route = "cards";
-let currentUser = {
-  username: "johndoe",
-  name: "John Doe",
-  job: "Farmer",
-  phone: "1234567890",
-  email: "johndoe420@gmail.com",
-};
 
 //create login modal
 const createLoginModal = () => {
@@ -32,9 +24,9 @@ const createLoginModal = () => {
     modal.style.display = "none";
   });
 };
-
 createLoginModal();
-//  compare login info to stored user data
+
+//  compare login info to stored user data and set currentUser
 const readLoginData = async () => {
   const username = document.getElementById("username-login").value;
   const password = document.getElementById("password-login").value;
@@ -43,29 +35,17 @@ const readLoginData = async () => {
     const JSONdata = await response.json();
     if (username === JSONdata.username && password === JSONdata.passwords) {
       console.log("Login successful");
-      currentUser.username = username;
-      saveCurrentUser(username);
+      const currentUser = JSONdata.username;
+      let currentUserJSON = JSON.stringify(currentUser);
+      localStorage.setItem("currentUser", currentUserJSON);
     } else {
       console.log("incorrect login information");
     }
   } catch (err) {
-    console.log(err.message);
+    console.error(err);
   }
 };
 
-//sets logged in user as current user
-const saveCurrentUser = async (user) => {
-  try {
-    const response = await fetch(`${url}/cards/${user}`);
-    const data = await response.json();
-    currentUser.name = data.name;
-    currentUser.phone = data.phone_number;
-    currentUser.job = data.occupation;
-    currentUser.email = data.email;
-  } catch (err) {
-    console.log(err.message);
-  }
-};
 //create signup modal
 const createSignUpModal = () => {
   const modal = document.getElementById("signup-modal");
@@ -116,6 +96,7 @@ const readSignUpdata = async () => {
   }
 };
 
+//adds event listener to saveBtn and calls saveCurrentCard()
 const formSubmitBtn = () => {
   const form = document.querySelector("#form-form");
   const submitBtn = document.querySelector("#form-submit-btn");
@@ -126,7 +107,7 @@ const formSubmitBtn = () => {
 };
 formSubmitBtn();
 
-//add new card button functionality
+//saves form to db with post request
 const saveCurrentCard = async () => {
   const name = document.querySelector("#name-input").value;
   let phone = document.querySelector("#phone-input").value;
@@ -135,8 +116,12 @@ const saveCurrentCard = async () => {
   const backgroundColor = document.querySelector("#background-selector").value;
   const textColor = document.querySelector("#text-selector").value;
   try {
-    if (currentUser.username === undefined || currentUser.username === null) {
+    //parse local storage for current user
+    let currentUser = localStorage.getItem("currentUser");
+    currentUser = JSON.parse(currentUser);
+    if (!currentUser) {
       alert("must be logged in");
+      return;
     }
     const data = {
       name: name,
@@ -145,7 +130,7 @@ const saveCurrentCard = async () => {
       email: email,
       backgroundColor: backgroundColor,
       textColor: textColor,
-      username: currentUser.username,
+      username: currentUser,
     };
     const response = await fetch(`${url}/cards`, {
       method: "POST",
@@ -172,7 +157,7 @@ const workingSearchBar = () => {
       displaySearchResults(data);
     });
   } catch (err) {
-    console.log(err.message);
+    console.error(err);
   }
 };
 workingSearchBar();
@@ -206,41 +191,21 @@ const fillCard = () => {
 };
 fillCard();
 
-//create functionality for myCards btn FIX MEEE
+//create functionality for myCards btn
 const myCardsBtn = () => {
-  const myCardsBtn = document.querySelector("#myCards-btn");
-  myCardsBtn.addEventListener("click", async () => {
-    const user = currentUser.username;
-    const formContainer = document.querySelector(".form-container");
-    formContainer.style.display = "none";
-
-    const exampleContainer = document.querySelector(".example-container");
-    exampleContainer.style.display = "none";
-
-    //get all request based on username
-    try {
-      if (user === undefined || user === null) {
-        alert('must be logged in to view "My Cards"');
-      }
-      const response = await fetch(`${url}/cards/${user}`);
+  try {
+    const myCardsBtn = document.querySelector("#myCards-btn");
+    myCardsBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      let currentUser = localStorage.getItem("currentUser");
+      currentUser = JSON.parse(currentUser);
+      const response = await fetch(`${url}/cards/${currentUser}`);
       const data = await response.json();
-      //for of loop
-      console.log(data);
-      for (let item of data) {
-        const ul = document.querySelector(".myCards");
-        const span = document.createElement("span");
-        span.setAttribute("class", "mycards-list");
-        const li = document.createElement("li");
-        li.textContent = data[item];
-        span.appendChild(li);
-        ul.appendChild(span);
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  });
-  //add event listeners to list items
-  //if clicked, display back on, info filled from that card
+      displaySearchResults(data);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 myCardsBtn();
 
@@ -266,11 +231,20 @@ const setDefaults = () => {
 };
 setDefaults();
 
-//add new card btn (Resets values to default)
+//add new card btn (Resets values to default and resets page html)
 const newCardBtn = () => {
   //add event listener to btn
   const addCardBtn = document.querySelector("#addCard-btn");
   addCardBtn.addEventListener("click", () => {
+    const cardList = document.querySelector(".cardsList");
+    cardList.style.display = "none";
+
+    const formContainer = document.querySelector(".form-container");
+    formContainer.style.display = "flex";
+
+    const exampleContainer = document.querySelector(".example-container");
+    exampleContainer.style.display = "flex";
+
     setDefaults();
   });
 };
@@ -295,7 +269,7 @@ const colorPicker = () => {
 };
 colorPicker();
 
-//display search results
+//display search results (READ)
 const displaySearchResults = (data) => {
   const formContainer = document.querySelector(".form-container");
   formContainer.style.display = "none";
@@ -313,10 +287,11 @@ const displaySearchResults = (data) => {
   try {
     //iterate through data array
     for (let i = 0; i < data.length; i++) {
+      let value = data[i];
       const cardList = document.createElement("div");
       cardList.setAttribute("class", "allPersonCards");
+      cardList.dataset.name = value.card_id;
       ul.appendChild(cardList);
-      let value = data[i];
 
       const titleDiv = document.createElement("div");
       titleDiv.setAttribute("class", "title-header");
@@ -324,10 +299,12 @@ const displaySearchResults = (data) => {
 
       const nameh2 = document.createElement("h2");
       nameh2.innerHTML = value.name;
+      nameh2.dataset.name = value.card_id;
       titleDiv.appendChild(nameh2);
 
       const occupationh4 = document.createElement("h4");
       occupationh4.innerHTML = value.occupation;
+      occupationh4.dataset.occupation = value.occupation;
       titleDiv.appendChild(occupationh4);
 
       const contactInfo = document.createElement("div");
@@ -335,28 +312,54 @@ const displaySearchResults = (data) => {
       cardList.appendChild(contactInfo);
 
       const phonenumber = document.createElement("p");
+      phonenumber.setAttribute("id", "clickphone");
       phonenumber.innerHTML = value.phone_number;
+      phonenumber.dataset.phonenumber = value.phone_number;
       contactInfo.appendChild(phonenumber);
 
       const email = document.createElement("p");
+      email.setAttribute("id", "clickemail");
       email.innerHTML = value.email;
+      email.dataset.email = value.email;
       contactInfo.appendChild(email);
 
       cardList.style.backgroundColor = value.background_color;
       cardList.style.color = value.text_color;
 
-      cardList.addEventListener("click", () => {
-        openSavedCard(data);
+      // const deleteBtn = document.createElement("div");
+      // deleteBtn.setAttribute("class", "delete-card");
+      // deleteBtn.innerHTML = "&times;";
+      // deleteBtn.dataset.deleteBtn = value.card_id;
+      // cardList.prepend(deleteBtn);
+
+      // const deleteBtns = document.querySelectorAll(".delete-card");
+      // deleteBtns.forEach((deleteBtn) => {
+      //   deleteBtn.addEventListener("click", (e) => {
+      //     e.stopPropagation();
+      //     const cardID = e.target.dataset.deleteBtn;
+      //     e.target.parentNode.classList.add("toBeDeleted");
+      //     deleteCard(cardID);
+      //   });
+      // });
+      cardList.addEventListener("click", (e) => {
+        // const selectedCard = {
+        //   name: e.currentTarget.querySelector("h2"),
+        //   occupation: e.currentTarget.querySelector("h4"),
+        //   phone: e.currentTarget.querySelector("#clickphone"),
+        //   email: e.currentTarget.querySelector("#clickemail")
+        // };
+
+        const cardId = e.currentTarget.dataset.name;
+        openSavedCard(cardId);
       });
     }
   } catch (err) {
-    console.log(err.message);
+    console.error(err);
   }
 };
 
-//open saved Card
-const openSavedCard = (data) => {
-  console.log(data);
+//open saved Card (learned about datasets)
+const openSavedCard = async (cardId) => {
   const cardList = document.querySelector(".cardsList");
   cardList.style.display = "none";
 
@@ -366,5 +369,75 @@ const openSavedCard = (data) => {
   const exampleContainer = document.querySelector(".example-container");
   exampleContainer.style.display = "flex";
 
-  const nameh2 = document.querySelector('#name-title'); 
+  const nameh2 = document.querySelector("#name-title");
+  const jobh4 = document.querySelector("#job-title");
+  const phone = document.querySelector("#phone-title");
+  const email = document.querySelector("#email-title");
+
+  let user = localStorage.getItem("currentUser");
+  user = JSON.parse(user);
+  const response = await fetch(`${url}/cards/${user}/${cardId}`);
+  const data = await response.json();
+  console.log(data);
+
+  nameh2.innerHTML = data[0].name;
+  jobh4.innerHTML = data[0].occupation;
+  phone.innerHTML = data[0].phone_number;
+  email.innerHTML = data[0].email;
+  exampleContainer.style.backgroundColor = data[0].background_color;
+  exampleContainer.style.color = data[0].text_color;
+  editCard(cardId);
+};
+
+// //add delete option to each card
+// const deleteCard = async (cardID) => {
+//   try {
+//     //set deleted card inner html to ''
+//     const toDelete = document.querySelector(".toBeDeleted");
+//     toDelete.style.display = "none";
+//     toDelete.innerHTML = "";
+//     //async delete route for that card id
+//     const response = await fetch(`${url}/cards/${cardID}`, {
+//       method: "DELETE",
+//     });
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+//edit card btn
+const editCard = (cardId) => {
+  const editBtn = document.querySelector("#edit");
+  editBtn.addEventListener("click", async () => {
+    let name = document.querySelector("#name-input").value;
+    let job = document.querySelector("#occupation-input").value;
+    let phone = document.querySelector("#phone-input").value;
+    let email = document.querySelector("#email-input").value;
+    let background = document.querySelector('#background-selector').value;
+    let textColor = document.querySelector('#text-selector').value;
+
+    let user = localStorage.getItem("currentUser");
+    user = JSON.parse(user);
+
+    const JsonObj = {
+      name : name,
+      job : job,
+      phone_number: phone,
+      email : email,
+      background_color : background,
+      text_color : textColor,
+      username : user
+    }
+    try {
+      const response = await fetch(`/cards/${user}/${cardId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(JsonObj),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  });
 };

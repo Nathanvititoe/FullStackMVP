@@ -41,6 +41,26 @@ app.get("/cards", async (req, res) => {
   }
 });
 
+//create GET ONE route for a card by card_id
+app.get("/cards/:username/:card_id", async (req, res) => {
+  try {
+    const {username, card_id } = req.params;
+    const results = await client.query(
+      "SELECT * FROM business_cards WHERE card_id = $1",
+      [card_id]
+    );
+    if (!results.rows) {
+      console.log("this card doesn't exist");
+      res.send("this card doesn't exist").status(404);
+      return;
+    }
+    res.send(results.rows).status(200);
+  } catch (err) {
+    console.log(err.message);
+    res.send(err.message).status(500);
+  }
+});
+
 //create  GET ONE route (shows all of A users cards)
 app.get("/cards/:username", async (req, res) => {
   try {

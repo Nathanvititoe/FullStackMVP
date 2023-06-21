@@ -184,7 +184,12 @@ label {
   align-items: center;
 }
 
-#form-submit-btn {
+.form-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#form-submit-btn, #edit {
   background-color: #454547;
   color: #ffffff;
   border: none;
@@ -193,11 +198,13 @@ label {
   border-radius: 5px;
 }
 
-#submit-btn-container {
+#submit-btn-container, .edit-btn {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 6%;
   margin-bottom: 5%;
+  width: 20%;
 }
 
 .color-selection {
@@ -275,13 +282,13 @@ label {
 }
 
 #signupForm {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-    justify-content: center;
-    gap: 5%;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
 
 .user-pass {
   display: flex;
@@ -329,7 +336,8 @@ label {
 }
 
 .close-login,
-.close-signup {
+.close-signup,
+.delete-card {
   color: #aaaaaa;
   font-size: 3rem;
   width: 100%;
@@ -342,7 +350,9 @@ label {
 .close-login:hover,
 .close-login:focus,
 .close-signup:hover,
-.close-signup:focus {
+.close-signup:focus,
+.delete-card:hover,
+.delete-card:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
