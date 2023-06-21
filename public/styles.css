@@ -137,8 +137,39 @@ body {
   text-shadow: 0.5px rgb(41, 39, 39);
 }
 
+#signup-btn {
+  border-left: 1px solid #ffffff;
+  transition: 0.1s all;
+}
+
+#signup-btn:hover {
+  transform: scale(1.1);
+  color: rgb(13, 13, 13);
+}
+
 #login-btn {
   border-right: 1px solid #ffffff;
+  transition: 0.1s tranform;
+}
+
+#login-btn:hover {
+  transform: scale(1.1);
+}
+
+#login {
+  transition: 0.1s all;
+}
+
+#login:hover {
+  color: #313030;
+}
+
+#signup {
+  transition: 0.1s all;
+}
+
+#signup:hover {
+  color: #313030;
 }
 
 #name-input,
@@ -248,7 +279,7 @@ label {
   justify-content: center;
   align-items: center;
   padding: 6%;
-  margin-bottom: 5%;
+  margin-bottom: 15%;
   width: 20%;
 }
 
@@ -270,12 +301,19 @@ label {
   cursor: pointer;
 }
 
+.container-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 45%;
+}
+
 .example-container {
   border-radius: 15px;
   padding: 5% 1%;
-  width: 40%;
-  box-sizing: border-box;
-  background-color: #ffffff;
+  width: 100%;
+  height: 45%;
+  background-color: hsl(0, 16%, 85%);
   box-shadow: 8px 8px rgb(34, 33, 33);
   display: flex;
   flex-direction: column;
@@ -293,6 +331,19 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#name-title {
+  font-size: 2rem;
+}
+
+#job-title {
+  font-size: 1.5rem;
+  opacity: 0.75;
+}
+
+#phone-title,#email-title {
+font-size: 1.25rem;
 }
 
 .modal {

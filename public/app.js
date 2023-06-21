@@ -205,7 +205,6 @@ const myCardsBtn = () => {
       currentUser = JSON.parse(currentUser);
       const response = await fetch(`${url}/cards/${currentUser}`);
       const data = await response.json();
-      console.log(data);
       displaySearchResults(data);
     });
   } catch (err) {
@@ -224,6 +223,7 @@ const setDefaults = () => {
   let jobCard = document.querySelector("#job-title");
   let emailInput = document.querySelector("#email-input");
   let emailCard = document.querySelector("#email-title");
+  let card = document.querySelector(".example-container");
 
   nameInput.value = "";
   nameCard.textContent = "John Doe";
@@ -233,14 +233,23 @@ const setDefaults = () => {
   jobCard.textContent = "Farmer";
   emailInput.value = "";
   emailCard.textContent = "johndoe@gmail.com";
+  card.style.backgroundColor = "#e1dada";
+  card.style.color = "black";
 };
 setDefaults();
 
 //add new card btn (Resets values to default and resets page html)
 const newCardBtn = () => {
-  //add event listener to btn
+  
   const addCardBtn = document.querySelector("#addCard-btn");
   addCardBtn.addEventListener("click", () => {
+    const saveBtn = document.querySelector(".edit-btn");
+    saveBtn.style.display = "none";
+    saveBtn.disabled = "true";
+  
+    const newCardBtn = document.querySelector("#submit-btn-container");
+    newCardBtn.style.display = "flex";
+    newCardBtn.disabled = "false";
     const cardList = document.querySelector(".cardsList");
     cardList.style.display = "none";
 
@@ -281,6 +290,9 @@ const displaySearchResults = (data) => {
 
   const exampleContainer = document.querySelector(".example-container");
   exampleContainer.style.display = "none";
+
+  const formExample = document.querySelector('.form-example-container');
+  formExample.style.display = 'none';
 
   const ul = document.querySelector(".myCards");
   const generalContainer = document.querySelector(".cardsList");
@@ -355,18 +367,21 @@ const openSavedCard = async (cardId) => {
   const cardList = document.querySelector(".cardsList");
   cardList.style.display = "none";
 
+  const formExample = document.querySelector(".form-example-container");
+  formExample.style.display = "flex";
+
   const formContainer = document.querySelector(".form-container");
   formContainer.style.display = "flex";
 
   const exampleContainer = document.querySelector(".example-container");
   exampleContainer.style.display = "flex";
 
-  const saveBtn = document.querySelector('.edit-btn')
-  saveBtn.style.display = 'flex';
+  const saveBtn = document.querySelector(".edit-btn");
+  saveBtn.style.display = "flex";
 
-  const newCardBtn = document.querySelector('#submit-btn-container');
-  newCardBtn.style.display = 'none';
-  newCardBtn.disabled = 'true';
+  const newCardBtn = document.querySelector("#submit-btn-container");
+  newCardBtn.style.display = "none";
+  newCardBtn.disabled = "true";
 
   const nameh2 = document.querySelector("#name-title");
   const jobh4 = document.querySelector("#job-title");
@@ -407,23 +422,24 @@ const deleteCard = async (cardID) => {
 const editCard = (cardId) => {
   const editBtn = document.querySelector("#edit");
   editBtn.addEventListener("click", async () => {
-    let name = document.querySelector("#name-input").value;
-    let job = document.querySelector("#occupation-input").value;
-    let phone = document.querySelector("#phone-input").value;
-    let email = document.querySelector("#email-input").value;
-    let background = document.querySelector("#background-selector").value;
-    let textColor = document.querySelector("#text-selector").value;
-
+    let nameValue = document.querySelector("#name-input").value;
+    let jobValue = document.querySelector("#occupation-input").value;
+    let phoneValue = document.querySelector("#phone-input").value;
+    let emailValue = document.querySelector("#email-input").value;
+    let backgroundValue = document.querySelector("#background-selector").value;
+    let textColorValue = document.querySelector("#text-selector").value;
     let user = localStorage.getItem("currentUser");
+
+
     user = JSON.parse(user);
 
     const JsonObj = {
       name: name,
-      occupation: job,
-      phone_number: phone,
-      email: email,
-      background_color: background,
-      text_color: textColor,
+      occupation: jobValue,
+      phone_number: phoneValue,
+      email: emailValue,
+      background_color: backgroundValue,
+      text_color: textColorValue,
       username: user,
     };
     try {
