@@ -421,7 +421,7 @@ const editCard = (cardId) => {
 
     const JsonObj = {
       name : name,
-      job : job,
+      occupation : job,
       phone_number: phone,
       email : email,
       background_color : background,
@@ -429,7 +429,7 @@ const editCard = (cardId) => {
       username : user
     }
     try {
-      const response = await fetch(`/cards/${user}/${cardId}`, {
+      const response = await fetch(`${url}/cards/${cardId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
