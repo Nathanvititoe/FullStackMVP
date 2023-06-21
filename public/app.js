@@ -1,5 +1,5 @@
-const url = 'https://mvpwebservice.onrender.com';
-// const url = "http://localhost:3001";
+// const url = 'https://mvpwebservice.onrender.com';
+const url = "http://localhost:3001";
 
 //create login modal
 const createLoginModal = () => {
@@ -93,6 +93,8 @@ const readSignUpdata = async () => {
       },
       body: JSON.stringify(data),
     });
+
+    const currentUser = localStorage.setItem('currentUser', JSON.stringify(data.username))
     const message = document.querySelector("#message");
     message.innerHTML = `Welcome, ${username}`;
   } catch (err) {
@@ -201,6 +203,7 @@ const myCardsBtn = () => {
     const myCardsBtn = document.querySelector("#myCards-btn");
     myCardsBtn.addEventListener("click", async (e) => {
       e.preventDefault();
+
       let currentUser = localStorage.getItem("currentUser");
       currentUser = JSON.parse(currentUser);
       const response = await fetch(`${url}/cards/${currentUser}`);
@@ -240,6 +243,14 @@ setDefaults();
 
 //add new card btn (Resets values to default and resets page html)
 const newCardBtn = () => {
+  const formContainer = document.querySelector(".form-container");
+  formContainer.style.display = "flex";
+
+  const exampleContainer = document.querySelector(".example-container");
+  exampleContainer.style.display = "flex";
+
+  const formExample = document.querySelector('.form-example-container');
+  formExample.style.display = 'flex';
   
   const addCardBtn = document.querySelector("#addCard-btn");
   addCardBtn.addEventListener("click", () => {
@@ -434,7 +445,7 @@ const editCard = (cardId) => {
     user = JSON.parse(user);
 
     const JsonObj = {
-      name: name,
+      name: nameValue,
       occupation: jobValue,
       phone_number: phoneValue,
       email: emailValue,

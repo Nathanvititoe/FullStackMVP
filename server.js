@@ -3,18 +3,18 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const { Pool } = require("pg");
-const client = new Pool ({
-    connectionString:process.env.DATABASE_URL
-});
-// const client = new Pool({
-//   host: "localhost",
-//   user: "postgres",
-//   port: 5432,
-//   database: "mvp",
+// const client = new Pool ({
+//     connectionString:process.env.DATABASE_URL
 // });
+const client = new Pool({
+  host: "localhost",
+  user: "postgres",
+  port: 5432,
+  database: "mvp",
+});
 
-// const PORT = 3001;
-const PORT = process.env.PORT;
+const PORT = 3001;
+// const PORT = process.env.PORT;
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -31,8 +31,8 @@ app.get("/cards", async (req, res) => {
     }
     res.send(results.rows).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.error(err);
+    res.send(err).status(500);
   }
 });
 
@@ -51,8 +51,8 @@ app.get("/cards/:username/:card_id", async (req, res) => {
     }
     res.send(results.rows).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.log(err);
+    res.send(err).status(500);
   }
 });
 
@@ -71,8 +71,8 @@ app.get("/cards/:username", async (req, res) => {
     }
     res.send(results.rows).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.log(err);
+    res.send(err).status(500);
   }
 });
 
@@ -111,7 +111,6 @@ app.post("/cards", async (req, res) => {
 app.put("/cards/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(req.params);
     const {
       name,
       phone_number,
@@ -139,11 +138,10 @@ app.put("/cards/:id", async (req, res) => {
       res.send("this card does not exist").status(400);
       return;
     }
-    console.log();
     res.send(results.rows[0]).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.log(err);
+    res.send(err).status(500);
   }
 });
 //create DELETE route (deletes a card)
@@ -160,8 +158,8 @@ app.delete("/cards/:id", async (req, res) => {
     }
     res.status(200).send(results.rows[0]);
   } catch (err) {
-    console.log(err.message);
-    res.status(500).send(err.message);
+    console.log(err);
+    res.status(500).send(err);
   }
 });
 
@@ -177,8 +175,8 @@ app.get("/users", async (req, res) => {
     }
     res.send(results.rows).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.status(500).send(err.message);
+    console.log(err);
+    res.status(500).send(err);
   }
 });
 //GET A USER
@@ -196,8 +194,8 @@ app.get("/users/:username", async (req, res) => {
     }
     res.send(results.rows[0]).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.log(err);
+    res.send(err).status(500);
   }
 });
 // create POST route for new users
@@ -205,12 +203,7 @@ app.post("/users", async (req, res) => {
   try {
     const { username, passwords } = req.body;
     const user = await client.query("SELECT $1 FROM users", [username]);
-    console.log(user.rows);
-    // if (user.rows.length === 0) {
-    //     console.log("this user exists already");
-    //     res.send("this user exists already");
-    //     return;
-    // }
+
     const results = await client.query(
       "INSERT INTO users(username, passwords)VALUES ($1, $2)",
       [username, passwords]
@@ -221,8 +214,8 @@ app.post("/users", async (req, res) => {
     }
     res.send(`${username} created`).status(201);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.log(err);
+    res.send(err).status(500);
   }
 });
 
@@ -242,8 +235,8 @@ app.put("/users/:user", async (req, res) => {
     }
     res.send(results.rows[0]).status(200);
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message).status(500);
+    console.log(err);
+    res.send(err).status(500);
   }
 });
 //DELETE ACCOUNT
@@ -260,8 +253,8 @@ app.delete("/users/:username", async (req, res) => {
     }
     res.status(200).send(results.rows[0]);
   } catch (err) {
-    console.log(err.message);
-    res.status(500).send(err.message);
+    console.log(err);
+    res.status(500).send(err);
   }
 });
 
